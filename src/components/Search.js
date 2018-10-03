@@ -27,7 +27,7 @@ class Search extends React.Component {
                         type="text"
                         className="search" 
                         placeholder="Search for a city..." 
-                        autoComplete="off"
+                        autoComplete="city"
                     />
                     {/* <button type="submit">Search</button> */}
                 </form>

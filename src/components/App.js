@@ -1,9 +1,10 @@
 import React from 'react';
 import Search from './Search';
+import Countries from './Countries';
 import City from './City';
 import '../styles/components/app.scss';
 
-// Zomato documentation: https://developers.zomato.com/documentation
+// https://en.wikipedia.org/wiki/Lists_of_cities_by_country
 
 class App extends React.Component {
 
@@ -13,33 +14,37 @@ class App extends React.Component {
     this.receiveSearchInput = this.receiveSearchInput.bind(this);
     this.receiveSearchSubmit = this.receiveSearchSubmit.bind(this);
     this.fetchLocations = this.fetchLocations.bind(this);
+    this.receiveCity = this.receiveCity.bind(this);
 
     this.state = {
-      apikey: '1afcc55ff3633f509165b59aedb2ef71',
-      baseURL: 'https://developers.zomato.com/api/v2.1/',
+      apikey: 'b4574621f5145340d9c19e14e47c51c674c170b7b564908de5347e95916c8d08',
+      baseURL: 'https://api.unsplash.com/search/collections/',
       searchQuery: '',
       results: [],
       error: ''
     }
   }
 
-  /*
-  To search for 'Italian' restaurants in 'Manhattan, New York City', set cuisines = 55, entity_id = 94741 and entity_type = zone
-To search for 'cafes' in 'Manhattan, New York City', set establishment_type = 1, entity_type = zone and entity_id = 94741
-Get list of all restaurants in 'Trending this Week' collection in 'New York City' by using entity_id = 280, entity_type = city and collection_id = 1
-
-  */
-
-  fetchLocations () {
-    const resultsCount = 20;
-    const url = `${this.state.baseURL}search?entity_id=280&q=${this.state.searchQuery}&order=asc&count=${resultsCount}&apikey=${this.state.apikey}`;
+  fetchLocations (city) {
+    const currentCity = city || this.state.searchQuery;
+    const url = `${this.state.baseURL}?query=${currentCity}&per_page=30&client_id=${this.state.apikey}`;
+    console.log(url)
     fetch(url)
     .then(response => response.json())
     .then(body => {
       this.setState({
-        results: body.restaurants
-      }, () => console.log(this.state.results));
+        results: body.results,
+        resultsTotal: body.total,
+        resultsTotalPages: body.total_pages
+      }, () => {
+        // console.log(this.state.resultsTotalPages)
+        // console.log(this.state.results)
+      });
     });
+  }
+
+  receiveCity (city){
+    this.fetchLocations (city)
   }
 
   receiveSearchSubmit (){
@@ -53,13 +58,26 @@ Get list of all restaurants in 'Trending this Week' collection in 'New York City
   render(){
     return (
       <div className="app">
-        <Search 
-          receiveSearchInput={this.receiveSearchInput}
-          receiveSearchSubmit={this.receiveSearchSubmit} 
-          searchQuery={this.state.searchQuery}
-          />
-        { this.state.results && <City results={this.state.results}/>
-        }
+        <div>
+          { this.state.results === "hi" && <Search 
+              receiveSearchInput={this.receiveSearchInput}
+              receiveSearchSubmit={this.receiveSearchSubmit} 
+              receiveCountry={this.receiveCountry} 
+              searchQuery={this.state.searchQuery}
+              resultsTotalPages={this.state.resultsTotalPages}
+            />
+          }
+        </div>
+        <div>
+          { 
+            this.state.results && <Countries receiveCity={this.receiveCity} />
+          }
+        </div>
+        <div className="city__photos">
+          { 
+            this.state.results && <City searchQuery={this.state.searchQuery} results={this.state.results}/>
+          }
+        </div>
       </div>
     )
   }
