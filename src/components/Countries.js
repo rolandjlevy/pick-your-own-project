@@ -23,11 +23,7 @@ class Cities extends React.Component {
         const rand = Math.floor(Math.random() * cities.length);
         const city = cities.length ? cities.splice(rand, 1) : null;
         if (city) {
-            this.setState({
-                europe: Object.assign({}, this.state.europe, {[country]: cities})
-            }, () => {
-               // console.log(this.state.europe);
-            })
+            this.setState({  europe: Object.assign({}, this.state.europe, {[country]: cities}) })
         }
         this.props.receiveLocation(city, country);
     }
