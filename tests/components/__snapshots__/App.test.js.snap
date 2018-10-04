@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches the snapshot 1`] = `
+<div
+  className="app"
+>
+  <div>
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        autoComplete="city"
+        className="search"
+        id="search"
+        onChange={[Function]}
+        placeholder="Search for a city..."
+        type="text"
+      />
+    </form>
+  </div>
+  <div>
+    <ul>
+      <li
+        onClick={[Function]}
+      >
+        France
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        Spain
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        Italy
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        Turkey
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        Germany
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        UK
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        Russia
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        Austria
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        Greece
+      </li>
+      <li
+        onClick={[Function]}
+      >
+        Poland
+      </li>
+    </ul>
+  </div>
+  <div
+    className="search__city"
+  >
+    <ul
+      className="search__city__list"
+    />
+  </div>
+</div>
+`;
