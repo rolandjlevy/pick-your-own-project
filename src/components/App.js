@@ -16,8 +16,8 @@ class App extends React.Component {
     this.receiveLocation = this.receiveLocation.bind(this);
     this.controlCurrentPhoto = this.controlCurrentPhoto.bind(this);
     this.cleanCityPhotos = this.cleanCityPhotos.bind(this);
-    this.receiveCurrentPhoto = this.receiveCurrentPhoto.bind(this);
     this.randomiseAnswers = this.randomiseAnswers.bind(this);
+    this.receiveChoice = this.receiveChoice.bind(this);
 
     this.apikey = 'b4574621f5145340d9c19e14e47c51c674c170b7b564908de5347e95916c8d08';
     this.baseURL = 'https://api.unsplash.com/search/collections/';
@@ -62,10 +62,6 @@ class App extends React.Component {
       this.setState({ currentPhoto: num })
   }
 
-  receiveCurrentPhoto () {
-    return this.state.currentPhoto;
-  }
-
   cleanCityPhotos (results) {
     const obj = {};
     return results.reduce((acc, item, index, array) => {
@@ -78,6 +74,12 @@ class App extends React.Component {
         }
         return acc;
     }, []);
+  }
+
+  receiveChoice(choice) {
+    // this.setState({
+    //     choice: choice
+    // })
   }
 
   receiveLocation (city, country, europeFullArrays){
@@ -95,10 +97,9 @@ class App extends React.Component {
     const currentCityPos = choicesArray.indexOf(this.state.currentCity);
     choicesArray.splice(currentCityPos, 1);
     let count = 1, answers = [this.state.currentCity];
-    while (count <4) {
+    while (count++ < 4) {
         const rand = Math.floor(Math.random() * choicesArray.length);
         answers.push(choicesArray.splice(rand, 1)[0]);
-        count++;
     }
     answers.sort((a,b) => Math.floor(Math.random() * answers.length));
     return answers;
@@ -132,7 +133,7 @@ class App extends React.Component {
           }
           {
             this.state.results && this.state.currentCity && this.state.answers &&
-            <Choices answers={this.state.answers} currentCity={this.state.currentCity}/>
+            <Choices receiveChoice={this.receiveChoice} answers={this.state.answers} currentCity={this.state.currentCity}/>
           }
 
       </div>

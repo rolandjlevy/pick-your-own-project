@@ -6,7 +6,9 @@
     --dark-color: rgb(15, 87, 0);
     --header-color: rgb(26, 159, 0);
     --shadow-color: rgba(92, 58, 70, 0.639);
+    --wrong-color: rgba(255, 38, 0);
     --light-grey-color:  #ddd;
+    --dark-grey-color:  #aaa;
     --main-padding: 1rem;
  }
   
@@ -303,7 +305,7 @@ header {
     padding: 0.5rem 1rem 0.5rem 0;
 }
 
-.choices__col1, .choices__col2 {
+.choices__col {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -311,18 +313,29 @@ header {
     margin: 0 0 0 1rem;
 }
 
-.choices__col1-button, .choices__col2-button {
+.choices__col-button, .choices__correct, .choices__wrong {
     border-radius: 0.3rem;
-    background-color: var(--light-grey-color);
     padding: 0.2rem 0.2rem 0.2rem 0.7rem;
     margin: 0.5rem 0;
-    color: var(--dark-color); 
     cursor: pointer;
+    color: white;
 }
 
-.choices__col1-button:hover, .choices__col2-button:hover {
+.choices__col-button {
+    background-color: var(--light-grey-color);
+    color: var(--dark-color); 
+}
+
+.choices__col-button:hover {
+    background-color: var(--dark-grey-color);
+}
+
+.choices__correct {
     background-color: var(--bright-color);
-    color: white;
+}
+
+.choices__wrong {
+    background-color: var(--wrong-color);
 }
 
 /* FOOTER ////////////////////////////////////////// */
