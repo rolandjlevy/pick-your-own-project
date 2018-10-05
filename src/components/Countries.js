@@ -16,11 +16,14 @@ class Cities extends React.Component {
                 // Italy: ["Rome", "Venice", "Milan", "Florence", "Naples", "Pisa"],
                 // France:["Paris", "Marseille", "Bordeaux", "Toulouse", "Lyon", "Montpellier"],
                 // Germany: ["Berlin", "Munich", "Hamburg", "Frankfurt", "Cologne"], 
-                // Turkey: ["Istanbul", "Antalya", "Izmir", "Ankara", "Bodrum"],
-                // Poland: ["Kraków", "Warsaw", "Wrocław", "Gdańsk", "Poznań"]
-                // Russia: ["Moscow", "St Petersburg", "Kazan", "Yekaterinburg", "Novosibirsk", "Sochi"],
-                // UK: ["London", "Manchester", "Brighton", "Cornwall", "Edinburgh", "Liverpool", "Bristol"],
-               
+                // UK: ["London", "Manchester", "Brighton", "Cornwall", "Edinburgh", "Liverpool", "Bristol"]
+            },
+            europeFullArrays: {
+                USA: ["Chicago", "New York", "Washington", "Boston", "Dallas", "Houston", "Philadelphia", "Texas", "Atlanta", "Phoenix", "Detroit", "Miami"],
+                Russia: ["Moscow", "St Petersburg", "Kazan", "Yekaterinburg", "Novosibirsk", "Sochi"],
+                Turkey: ["Istanbul", "Antalya", "Izmir", "Ankara", "Bodrum"],
+                China: ["Beijing", "Shanghai", "Chengdu", "Guangzhou"],
+                Poland: ["Kraków", "Warsaw", "Wrocław", "Gdańsk", "Poznań"]
             }
         }
     }
@@ -32,15 +35,15 @@ class Cities extends React.Component {
     handleClick (country, event) {
         const cities = [...this.state.europe[country]];
         const rand = Math.floor(Math.random() * cities.length);
-        const city = cities.length ? cities.splice(rand, 1)[0].toLowerCase() : null;
-        console.log(city);
+        const city = cities.length ? cities.splice(rand, 1)[0] : null;
         if (city) {
             this.setState({  
                 europe: Object.assign({}, this.state.europe, {[country]: cities}),
                 country: country
             })
         }
-        this.props.receiveLocation(city, country);
+        const europeFullArrays = this.state.europeFullArrays[country];
+        this.props.receiveLocation(city, country, europeFullArrays);
     }
 
     render () {

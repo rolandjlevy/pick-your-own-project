@@ -17,12 +17,12 @@ class App extends React.Component {
     this.controlCurrentPhoto = this.controlCurrentPhoto.bind(this);
     this.cleanCityPhotos = this.cleanCityPhotos.bind(this);
     this.receiveCurrentPhoto = this.receiveCurrentPhoto.bind(this);
-    
+    this.randomiseAnswers = this.randomiseAnswers.bind(this);
+
     this.apikey = 'b4574621f5145340d9c19e14e47c51c674c170b7b564908de5347e95916c8d08';
     this.baseURL = 'https://api.unsplash.com/search/collections/';
     this.keepArray = ["tower", "summer", "explore", "holiday", "street", "village", "town", "urban", "rural", "desert", "mountain", "view", "river", "stream", "field", "beach", "sea", "sunset", "landmark", "architecture", "city", "building", "cathedral", "bridge"];  
     this.ignoreArray = ["wood", "wall", "texture", "glass", "metal"]; // const ignoreArray = ["leaf", "fashion", "table", "coffee", "fish", "computer", "office", "food", "guitar", "music", "sport", "background", "door", "wood", "wallpaper", "wall", "texture", "glass", "metal"];
-    //this.ignoreArray = [];
   
     this.state = {
       results: [],
@@ -40,11 +40,13 @@ class App extends React.Component {
         currentPhoto: 0,
         cityUrl: url,
         results: this.cleanCityPhotos(body.results),
+        answers: this.randomiseAnswers (),
         resultsTotal: body.total,
         resultsTotalPages: body.total_pages,
       });
     });
-    this.keepArray.push(this.state.currentCity);
+
+    this.keepArray.push(this.state.currentCity.toLowerCase());
   }
 
   keepRelevantImage (image, arrayLength) {
@@ -78,14 +80,41 @@ class App extends React.Component {
     }, []);
   }
 
-  receiveLocation (city, country){
+  receiveLocation (city, country, europeFullArrays){
     this.setState({
       currentCity: city,
-      currentCountry: country
-    }, () => this.fetchLocations ())
+      currentCountry: country,
+      europeFullArrays: europeFullArrays
+    }, () => {
+      this.fetchLocations ();
+    })
   }
 
+  randomiseAnswers () {
+    const choicesArray = [...this.state.europeFullArrays];
+    const currentCityPos = choicesArray.indexOf(this.state.currentCity);
+    choicesArray.splice(currentCityPos, 1);
+    let count = 1, answers = [this.state.currentCity];
+    while (count <4) {
+        const rand = Math.floor(Math.random() * choicesArray.length);
+        answers.push(choicesArray.splice(rand, 1)[0]);
+        count++;
+    }
+    answers.sort((a,b) => Math.floor(Math.random() * answers.length));
+    return answers;
+}
+
   render(){
+    const cities =  
+      (this.state.results.length && this.state.currentCity) ?
+      <Cities 
+        results={this.state.results} 
+        currentPhoto={this.state.currentPhoto} 
+        image={this.state.results[this.state.currentPhoto]}
+        currentCity={this.state.currentCity}
+        cityUrl={this.state.cityUrl}
+      /> : null;
+
     return (
       <div className="app">
           <div className="intro-message">Choose a country and try to guess the city...</div>
@@ -93,16 +122,7 @@ class App extends React.Component {
             this.state.results && 
               <Countries receiveLocation={this.receiveLocation} />
           }
-          { 
-            this.state.results.length && this.state.currentCity &&
-            <Cities 
-              results={this.state.results} 
-              currentPhoto={this.state.currentPhoto} 
-              image={this.state.results[this.state.currentPhoto]}
-              currentCity={this.state.currentCity}
-              cityUrl={this.state.cityUrl}
-            />
-          }
+          {cities}
           {
             this.state.results && this.state.currentCity &&
             <Controls 
@@ -111,8 +131,8 @@ class App extends React.Component {
             />
           }
           {
-            this.state.results && this.state.currentCity &&
-            <Choices />
+            this.state.results && this.state.currentCity && this.state.answers &&
+            <Choices answers={this.state.answers} currentCity={this.state.currentCity}/>
           }
 
       </div>

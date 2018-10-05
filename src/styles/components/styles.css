@@ -1,9 +1,9 @@
 :root {
     --main-txt-color:  #0a0a0a;
     --light-color: rgb(250, 250, 231);
-    --bg-color:rgb(255, 255, 240);
+    --bg-color:rgb(250, 250, 231);
     --bright-color:rgb(26, 159, 0);
-    --dark-color: rgb(13, 75, 0);
+    --dark-color: rgb(15, 87, 0);
     --header-color: rgb(26, 159, 0);
     --shadow-color: rgba(92, 58, 70, 0.639);
     --light-grey-color:  #ddd;
@@ -18,6 +18,7 @@
 html {
     scroll-behavior:smooth;
     /* background-color: var(--bg-color); */
+    background-color: var(--bg-color);
 }
 
 body {
@@ -252,7 +253,7 @@ header {
 
 .scrore__tries__container {
   width: 100px;
-  background-color: var(--light-grey); 
+  background-color: var(--light-grey-color); 
   filter: drop-shadow(0 0 3px #30303050);
   margin-bottom: 1rem;
   border: 2px solid var(--bright-color);
@@ -299,30 +300,41 @@ header {
     display: flex;
     flex-direction: row;
     background-color: #fff;
-    padding: 1rem;
+    padding: 0.5rem 1rem 0.5rem 0;
 }
 
 .choices__col1, .choices__col2 {
-    width: 150px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     text-align: left;
-    color: var(--dark-color); 
-    background-color: var(--light-grey-color);
     margin: 0 0 0 1rem;
+}
+
+.choices__col1-button, .choices__col2-button {
+    border-radius: 0.3rem;
+    background-color: var(--light-grey-color);
+    padding: 0.2rem 0.2rem 0.2rem 0.7rem;
+    margin: 0.5rem 0;
+    color: var(--dark-color); 
+    cursor: pointer;
+}
+
+.choices__col1-button:hover, .choices__col2-button:hover {
+    background-color: var(--bright-color);
+    color: white;
 }
 
 /* FOOTER ////////////////////////////////////////// */
 
 .footer {
     display: flex;
-    /* flex: 1; */
     flex-direction: column;
     text-align: center;
-    margin: 0;
+    margin: 2rem 0 0 0;
     font-size: 1rem;
     line-height: 2rem;
-    background-color: var(--dark-color);
+    background-color: var(--bright-color);
     color:white;
     padding: 0;
     border: 0;
@@ -334,7 +346,7 @@ header {
   }
 
   .pad-top {
-    padding-top: 1.5rem;
+    padding-top: 2.5rem;
   }
 
   .pad-bottom {
@@ -349,13 +361,13 @@ header {
   
   .footer__contact a:link, 
   .footer__contact a:visited {
-    background: rgb(0, 0, 0);
-    color:var(--bright-color);
+    background: var(--dark-color);
+    color: var(--bright-color);
   }
   
   .footer__contact a:hover {
     text-decoration-line: none;
-    background:  var(--bright-color);
+    background:  var(--dark-color);
     color:white;
   }
 
