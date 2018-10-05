@@ -21,16 +21,10 @@ class Controls extends React.Component {
         
         return (
             <div className="controls__container">
-                {/* <div className="controls__buttons">
-                    <a href="#" id="-1" onClick={this.handleControls}>&lt;</a>{this.props.currentPhoto + 1}<a href="#" id="1" onClick={this.handleControls}>&gt;</a>
-                </div> */}
-
                 <div className="controls__buttons">
                     <a href="#" onClick={event => this.handleControls(-1, event)}>
                         <i className="fas fa-angle-double-left fa-inverse"></i>
                     </a> 
-                    {/* <div className="controls__currentphoto">{this.props.currentPhoto + 1}</div> */}
-
                     <a href="#" onClick={event => this.handleControls(1, event)}>
                         <i className="fas fa-angle-double-right fa-inverse"></i>
                     </a>

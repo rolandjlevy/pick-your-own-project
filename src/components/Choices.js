@@ -12,18 +12,15 @@ class Choices extends React.Component {
     }
 
     handleClick(choice, event) {
-        this.setState({
-            choice: choice
-        })
-        // this.props.receiveChoice(choice)
+        this.props.receiveChoice(choice);
     }
 
     getChoice(n) {
-        if (this.state.choice) {
+        if (this.props.choice) {
             if (this.props.answers[n] === this.props.currentCity) { 
                 return "choices__correct" 
             } else { 
-                return (this.props.answers[n] === this.state.choice) ? "choices__wrong" : "choices__col-button";
+                return (this.props.answers[n] === this.props.choice) ? "choices__wrong" : "choices__col-button";
             }
         } else {
             return "choices__col-button"
@@ -31,7 +28,6 @@ class Choices extends React.Component {
     }
 
     render () {
-        console.log(this.state.choice);
 
         return (
             <div className="choices">

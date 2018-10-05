@@ -5,8 +5,6 @@ import Controls from './Controls';
 import Choices from './Choices';
 import '../styles/components/app.scss';
 
-// https://en.wikipedia.org/wiki/Lists_of_cities_by_country
-
 class App extends React.Component {
 
   constructor(){
@@ -39,6 +37,7 @@ class App extends React.Component {
       this.setState({
         currentPhoto: 0,
         cityUrl: url,
+        choice: null,
         results: this.cleanCityPhotos(body.results),
         answers: this.randomiseAnswers (),
         resultsTotal: body.total,
@@ -56,7 +55,7 @@ class App extends React.Component {
   }
 
   controlCurrentPhoto (direction) {
-      const maxNum = 10; //this.state.results.length-1
+      const maxNum = 10;
       let num = this.state.currentPhoto + direction;
       num = num > maxNum-1 ? maxNum-1 : (num < 0 ? 0 : num);
       this.setState({ currentPhoto: num })
@@ -77,9 +76,9 @@ class App extends React.Component {
   }
 
   receiveChoice(choice) {
-    // this.setState({
-    //     choice: choice
-    // })
+    this.setState({
+        choice: choice
+    })
   }
 
   receiveLocation (city, country, europeFullArrays){
@@ -133,7 +132,7 @@ class App extends React.Component {
           }
           {
             this.state.results && this.state.currentCity && this.state.answers &&
-            <Choices receiveChoice={this.receiveChoice} answers={this.state.answers} currentCity={this.state.currentCity}/>
+            <Choices receiveChoice={this.receiveChoice} choice={this.state.choice} answers={this.state.answers} currentCity={this.state.currentCity}/>
           }
 
       </div>
