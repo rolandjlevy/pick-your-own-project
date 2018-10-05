@@ -5,10 +5,6 @@ class Choices extends React.Component {
         super();
         this.handleClick = this.handleClick.bind(this);
         this.getChoice = this.getChoice.bind(this);
-
-        this.state = {
-            choice: null
-        }
     }
 
     handleClick(choice, event) {
@@ -31,11 +27,13 @@ class Choices extends React.Component {
 
         return (
             <div className="choices">
-               
-               <div className="choices__header">
+
+                <div className="choices__header">
                     Which city is this?
                 </div>
+
                 <div className="choices__body">
+
                     <div className="choices__col">
                         <div 
                             onClick={event => this.handleClick(this.props.answers[0], event)} 
@@ -46,8 +44,9 @@ class Choices extends React.Component {
                             onClick={event => this.handleClick(this.props.answers[1], event)} 
                             className={this.getChoice(1)}>
                             C: {this.props.answers[1]}
-                        </div>
+                        </div> 
                     </div>
+                    
                     <div className="choices__col">
                         <div 
                             onClick={event => this.handleClick(this.props.answers[2], event)} 
@@ -60,10 +59,13 @@ class Choices extends React.Component {
                             D: {this.props.answers[3]} 
                         </div>
                     </div>
+
                 </div>
+
             </div>
         )
     }
 }
+
 
 export default Choices;

@@ -12,6 +12,7 @@ class Controls extends React.Component {
     }
 
     getLives() {
+        console.log("getLives: " + this.props.lives);
         const num = this.props.currentPhoto;
         const percentage = num === 10 ? 100 : 100 - (num * 10);
         return percentage + "%";

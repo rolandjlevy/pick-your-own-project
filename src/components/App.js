@@ -38,6 +38,7 @@ class App extends React.Component {
         currentPhoto: 0,
         cityUrl: url,
         choice: null,
+        lives: 10,
         results: this.cleanCityPhotos(body.results),
         answers: this.randomiseAnswers (),
         resultsTotal: body.total,
@@ -58,7 +59,12 @@ class App extends React.Component {
       const maxNum = 10;
       let num = this.state.currentPhoto + direction;
       num = num > maxNum-1 ? maxNum-1 : (num < 0 ? 0 : num);
-      this.setState({ currentPhoto: num })
+      let lives = this.state.lives;
+      lives -= direction === 1 ? 1 : 0;
+      this.setState({ 
+        currentPhoto: num,
+        lives: lives
+      })
   }
 
   cleanCityPhotos (results) {
@@ -132,7 +138,13 @@ class App extends React.Component {
           }
           {
             this.state.results && this.state.currentCity && this.state.answers &&
-            <Choices receiveChoice={this.receiveChoice} choice={this.state.choice} answers={this.state.answers} currentCity={this.state.currentCity}/>
+            <Choices 
+              receiveChoice={this.receiveChoice} 
+              choice={this.state.choice} 
+              lives={this.state.lives} 
+              answers={this.state.answers} 
+              currentCity={this.state.currentCity}
+            />
           }
 
       </div>
