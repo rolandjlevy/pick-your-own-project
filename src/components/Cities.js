@@ -11,15 +11,14 @@ class Cities extends React.Component {
 
             <div className="city__photos">
                 <ul className="city__photos__list">
-                {
-                    this.props.results.map(item => {
-                        return <li key={item.id}>
-                            <div className="city__photos__list-img" style={{backgroundImage: `url(${item.cover_photo.urls.regular})`}} >
-                                <a href={item.cover_photo.links.html}>{item.title}</a>
+                    <li>
+                        {/* href={this.props.image.cover_photo.links.html */}
+                        <a title={this.props.currentCity} href={this.props.cityUrl} target="_blank">
+                            <div className="city__photos__list-img fade" style={{backgroundImage: `url(${this.props.image.cover_photo.urls.regular})`}} >
                             </div>
-                        </li>
-                    })
-                }
+                        </a>
+                        
+                    </li>
                 </ul>
             </div>
         )
