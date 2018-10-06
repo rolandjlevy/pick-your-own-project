@@ -1,0 +1,51 @@
+// --light-color: rgb(250, 250, 231);
+// --bg-color:rgb(250, 250, 231);
+// --bright-color:rgb(26, 159, 0);
+// --header-color: rgb(26, 159, 0);
+// --dark-color: rgb(15, 87, 0);
+// --shadow-color: rgba(92, 58, 70, 0.639);
+// --wrong-color: rgba(255, 38, 0);
+// --light-grey-color:  #ddd;
+// --dark-grey-color:  #aaa;
+
+
+button {
+  border: 5px solid transparent;
+  background: #ddd; // #AED6D1;
+  color: rgb(15, 87, 0); // #55706D;
+  border-radius: 0.3rem;
+  padding: 5px 5px;
+  overflow: hidden;
+  width: 120px;
+  transition: 
+    all        1.2s,
+    border     0.5s 1.2s,
+    box-shadow 0.3s 1.5s;
+  white-space: nowrap;
+  text-indent: 10px;
+  font-weight: bold;
+
+  span {
+    display: inline-block;
+    transform: translateX(300px);
+    font-weight: normal;
+    opacity: 0;
+    transition: 
+      opacity 0.1s 0.5s,
+      transform 0.4s 0.5s;
+  }
+
+  &:focus {
+    text-indent: 10px;
+    background:rgb(26, 159, 0);
+    color: #fff;
+    width: 150px;
+    border: 5px solid rgb(23, 138, 1);
+    box-shadow: 3px 3px 2px rgba(black, 0.15);
+    
+    span {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
