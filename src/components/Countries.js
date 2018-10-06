@@ -12,18 +12,13 @@ class Cities extends React.Component {
                 Turkey: ["Istanbul"],
                 China: ["Beijing", "Shanghai", "Chengdu", "Guangzhou"],
                 Poland: ["Warsaw"]
-                // Spain: ["Madrid", "Barcelona", "Seville", "Valencia", "Granada", "Malaga"],
-                // Italy: ["Rome", "Venice", "Milan", "Florence", "Naples", "Pisa"],
-                // France:["Paris", "Marseille", "Bordeaux", "Toulouse", "Lyon", "Montpellier"],
-                // Germany: ["Berlin", "Munich", "Hamburg", "Frankfurt", "Cologne"], 
-                // UK: ["London", "Manchester", "Brighton", "Cornwall", "Edinburgh", "Liverpool", "Bristol"]
             },
             europeFullArrays: {
                 USA: ["Chicago", "New York", "Washington", "Boston", "Dallas", "Houston", "Philadelphia", "Texas", "Atlanta", "Phoenix", "Detroit", "Miami"],
                 Russia: ["Moscow", "St Petersburg", "Kazan", "Yekaterinburg", "Novosibirsk", "Sochi"],
-                Turkey: ["Istanbul", "Antalya", "Izmir", "Ankara", "Bodrum"],
-                China: ["Beijing", "Shanghai", "Chengdu", "Guangzhou"],
-                Poland: ["Kraków", "Warsaw", "Wrocław", "Gdańsk", "Poznań"]
+                Turkey: ["Istanbul", "Antalya", "Izmir", "Ankara", "Bodrum", "Konya", "Bursa"],
+                China: ["Beijing", "Shanghai", "Chengdu", "Guangzhou", "Hangzhou", "Shenzhen"],
+                Poland: ["Kraków", "Warsaw", "Wrocław", "Gdańsk", "Poznań", "Łódź"]
             }
         }
     }
@@ -51,16 +46,14 @@ class Cities extends React.Component {
         return (
             <div>
                 <ul className="countries">
-                    {
-                    Object.keys(this.state.europe).map(country => {
+                    { Object.keys(this.state.europe).map(country => {
                         return <li href="#" 
                             className={this.getClass(country)} 
                             key={country} 
                             onClick={(event) => this.handleClick(country, event)}>
                             {country}
                         </li>
-                    })
-                    }
+                    })}
                 </ul>
             </div>
         )

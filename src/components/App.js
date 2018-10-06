@@ -8,26 +8,29 @@ import '../styles/components/app.scss';
 class App extends React.Component {
 
   constructor(){
-    super();
-
-    this.fetchLocations = this.fetchLocations.bind(this);
-    this.receiveLocation = this.receiveLocation.bind(this);
-    this.controlCurrentPhoto = this.controlCurrentPhoto.bind(this);
-    this.cleanCityPhotos = this.cleanCityPhotos.bind(this);
-    this.randomiseAnswers = this.randomiseAnswers.bind(this);
-    this.receiveChoice = this.receiveChoice.bind(this);
-
+    super();  
+    
     this.apikey = 'b4574621f5145340d9c19e14e47c51c674c170b7b564908de5347e95916c8d08';
     this.baseURL = 'https://api.unsplash.com/search/collections/';
     this.keepArray = ["tower", "summer", "explore", "holiday", "street", "village", "town", "urban", "rural", "desert", "mountain", "view", "river", "stream", "field", "beach", "sea", "sunset", "landmark", "architecture", "city", "building", "cathedral", "bridge"];  
     this.ignoreArray = ["wood", "wall", "texture", "glass", "metal"]; // const ignoreArray = ["leaf", "fashion", "table", "coffee", "fish", "computer", "office", "food", "guitar", "music", "sport", "background", "door", "wood", "wallpaper", "wall", "texture", "glass", "metal"];
   
+    this.fetchLocations = this.fetchLocations.bind(this);
+    this.receiveLocation = this.receiveLocation.bind(this);
+    this.controlCurrentPhoto = this.controlCurrentPhoto.bind(this);
+    this.cleanCityPhotos = this.cleanCityPhotos.bind(this);
+    this.randomiseChoices = this.randomiseChoices.bind(this);
+    this.receiveChoice = this.receiveChoice.bind(this);
+
     this.state = {
       results: [],
       currentPhoto: 0,
       error: ''
     } 
   }
+
+  /* fetch from Unsplash API based on currentCity
+  /////////////////////////////////////////////*/
 
   fetchLocations () {
     const url = `${this.baseURL}?query=${this.state.currentCity}&page=1&per_page=30&client_id=${this.apikey}`;
@@ -37,23 +40,19 @@ class App extends React.Component {
       this.setState({
         currentPhoto: 0,
         cityUrl: url,
-        choice: null,
         lives: 10,
+        choice: null,
+        choices: this.randomiseChoices (),
         results: this.cleanCityPhotos(body.results),
-        answers: this.randomiseAnswers (),
         resultsTotal: body.total,
         resultsTotalPages: body.total_pages,
       });
     });
-
     this.keepArray.push(this.state.currentCity.toLowerCase());
   }
 
-  keepRelevantImage (image, arrayLength) {
-    const imageIsRelevant = image.tags.filter(n => this.keepArray.indexOf(n.title) >= 0).length > 0;
-    const imageNotRelevant = image.tags.filter(n => this.ignoreArray.indexOf(n.title) >= 0).length > 0;
-    return (arrayLength < 20) ? true : imageIsRelevant && !imageNotRelevant || image.tags == [];
-  }
+  /* control photos from <Controls>
+  /////////////////////////////////////////////*/
 
   controlCurrentPhoto (direction) {
       const maxNum = 10;
@@ -66,6 +65,9 @@ class App extends React.Component {
         lives: lives
       })
   }
+
+  /* remove /clean irrelevant photos after fetch
+  /////////////////////////////////////////////*/
 
   cleanCityPhotos (results) {
     const obj = {};
@@ -81,11 +83,14 @@ class App extends React.Component {
     }, []);
   }
 
-  receiveChoice(choice) {
-    this.setState({
-        choice: choice
-    })
+  keepRelevantImage (image, arrayLength) {
+    const imageIsRelevant = image.tags.filter(n => this.keepArray.indexOf(n.title) >= 0).length > 0;
+    const imageNotRelevant = image.tags.filter(n => this.ignoreArray.indexOf(n.title) >= 0).length > 0;
+    return (arrayLength < 20) ? true : imageIsRelevant && !imageNotRelevant || image.tags == [];
   }
+
+  /* get city and country from <Countries>
+  /////////////////////////////////////////////*/
 
   receiveLocation (city, country, europeFullArrays){
     this.setState({
@@ -97,20 +102,34 @@ class App extends React.Component {
     })
   }
 
-  randomiseAnswers () {
+  /* randomise choices
+  /////////////////////////////////////////////*/
+
+  randomiseChoices () {
     const choicesArray = [...this.state.europeFullArrays];
     const currentCityPos = choicesArray.indexOf(this.state.currentCity);
     choicesArray.splice(currentCityPos, 1);
-    let count = 1, answers = [this.state.currentCity];
+    let count = 1, choices = [this.state.currentCity];
     while (count++ < 4) {
         const rand = Math.floor(Math.random() * choicesArray.length);
-        answers.push(choicesArray.splice(rand, 1)[0]);
+        choices.push(choicesArray.splice(rand, 1)[0]);
     }
-    answers.sort((a,b) => Math.floor(Math.random() * answers.length));
-    return answers;
-}
+    choices.sort((a,b) => Math.floor(Math.random() * choices.length));
+    return choices;
+  }
+
+  /* set user's choice from <Choices>
+  /////////////////////////////////////////////*/
+
+  receiveChoice(choice) {
+    this.setState({ choice: choice })
+  }
+
+  /* render <Countries> <Cities> <Controls> <Choices>
+  /////////////////////////////////////////////*/
 
   render(){
+
     const cities =  
       (this.state.results.length && this.state.currentCity) ?
       <Cities 
@@ -137,12 +156,12 @@ class App extends React.Component {
             />
           }
           {
-            this.state.results && this.state.currentCity && this.state.answers &&
+            this.state.results && this.state.currentCity && this.state.choices &&
             <Choices 
               receiveChoice={this.receiveChoice} 
               choice={this.state.choice} 
               lives={this.state.lives} 
-              answers={this.state.answers} 
+              choices={this.state.choices} 
               currentCity={this.state.currentCity}
             />
           }
