@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/components/controls.scss';
 
 class Controls extends React.Component {
     constructor() {
@@ -8,13 +9,14 @@ class Controls extends React.Component {
     } 
 
     handleControls (direction, event) {
+        event.preventDefault();
         this.props.controlCurrentPhoto(direction);
     }
 
     getLives() {
         // console.log("getLives: " + this.props.lives);
-        const num = this.props.currentPhoto;
-        const percentage = num === 10 ? 100 : 100 - (num * 10);
+        const num = this.props.lives;
+        const percentage = num === 10 ? 100 : (num * 10);
         return percentage + "%";
     }
 
@@ -33,8 +35,8 @@ class Controls extends React.Component {
 
                 <div className="scrore__tries__container">
                     <div style={{width: this.getLives()}} className="scrore__tries__bar scrore__tries__text">
-                    {10 - this.props.currentPhoto} 
-                    &nbsp;{this.props.currentPhoto + 1 === 10 ? `life` : `lives`}</div>
+                    {this.props.lives} 
+                    &nbsp;{this.props.lives === 1 ? `life` : `lives`}</div>
                 </div>
             </div>
         )

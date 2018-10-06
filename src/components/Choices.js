@@ -15,12 +15,12 @@ class Choices extends React.Component {
     getChoice(n) {
         if (this.props.choice) {
             if (this.props.choices[n] === this.props.currentCity) { 
-                return "choices__correct" 
+                return "choices__col-button-correct" 
             } else { 
-                return (this.props.choices[n] === this.props.choice) ? "choices__wrong" : "choices__col-button";
+                return (this.props.choices[n] === this.props.choice) ? "choices__col-button-wrong" : "choices__col-button-static";
             }
         } else {
-            return "choices__col-button"
+            return "choices__col-button-static"
         }
     }
 

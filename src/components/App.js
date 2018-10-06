@@ -25,6 +25,7 @@ class App extends React.Component {
     this.state = {
       results: [],
       currentPhoto: 0,
+      lives: 10,
       error: ''
     } 
   }
@@ -41,6 +42,7 @@ class App extends React.Component {
         currentPhoto: 0,
         cityUrl: url,
         lives: 10,
+        prevPhoto: 0,
         choice: null,
         choices: this.randomiseChoices (),
         results: this.cleanCityPhotos(body.results),
@@ -58,12 +60,12 @@ class App extends React.Component {
       const maxNum = 10;
       let num = this.state.currentPhoto + direction;
       num = num > maxNum-1 ? maxNum-1 : (num < 0 ? 0 : num);
-      let lives = this.state.lives;
-      lives -= direction === 1 ? 1 : 0;
-      this.setState({ 
-        currentPhoto: num,
-        lives: lives
-      })
+      this.setState({ currentPhoto: num });
+      if (direction === 1 && num > this.state.prevPhoto) {
+        let lives = this.state.lives;
+        lives--;
+        this.setState({ lives: lives, prevPhoto: num })
+      }
   }
 
   /* remove /clean irrelevant photos after fetch
@@ -145,7 +147,7 @@ class App extends React.Component {
           <div className="intro-message">Choose a country and try to guess the city...</div>
           { 
             this.state.results && 
-              <Countries receiveLocation={this.receiveLocation} />
+            <Countries receiveLocation={this.receiveLocation} />
           }
           {cities}
           {
@@ -153,6 +155,7 @@ class App extends React.Component {
             <Controls 
               controlCurrentPhoto={this.controlCurrentPhoto} 
               currentPhoto={this.state.currentPhoto} 
+              lives={this.state.lives} 
             />
           }
           {
@@ -160,7 +163,6 @@ class App extends React.Component {
             <Choices 
               receiveChoice={this.receiveChoice} 
               choice={this.state.choice} 
-              lives={this.state.lives} 
               choices={this.state.choices} 
               currentCity={this.state.currentCity}
             />

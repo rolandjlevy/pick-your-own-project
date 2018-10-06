@@ -1,0 +1,31 @@
+/* Countries and Cities ////////////////////////////////////////// */
+
+.countries {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.country__button-none, .country__button-selected {
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    background-color: var(--bright-color);
+    margin: 0.3rem;
+    border-radius: 0.3rem;
+    filter: drop-shadow(0 0 3px #30303050);
+    color: white;
+}
+
+.country__button-none {
+    background-color: var(--bright-color);
+}
+
+.country__button-selected, .country__button-none:hover {
+    background-color: var(--dark-color);
+}

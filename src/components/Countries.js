@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/components/countries.scss';
 
 class Cities extends React.Component {
     constructor() {
@@ -9,15 +10,15 @@ class Cities extends React.Component {
             europe: {
                 USA: ["Chicago", "New York", "Washington", "Boston", "Dallas", "Houston", "Philadelphia", "Texas", "Atlanta", "Phoenix", "Detroit", "Miami"],
                 Russia: ["Moscow"],
-                Turkey: ["Istanbul"],
                 China: ["Beijing", "Shanghai", "Chengdu", "Guangzhou"],
+                Turkey: ["Istanbul"],
                 Poland: ["Warsaw"]
             },
             europeFullArrays: {
                 USA: ["Chicago", "New York", "Washington", "Boston", "Dallas", "Houston", "Philadelphia", "Texas", "Atlanta", "Phoenix", "Detroit", "Miami"],
                 Russia: ["Moscow", "St Petersburg", "Kazan", "Yekaterinburg", "Novosibirsk", "Sochi"],
-                Turkey: ["Istanbul", "Antalya", "Izmir", "Ankara", "Bodrum", "Konya", "Bursa"],
                 China: ["Beijing", "Shanghai", "Chengdu", "Guangzhou", "Hangzhou", "Shenzhen"],
+                Turkey: ["Istanbul", "Antalya", "Izmir", "Ankara", "Bodrum", "Konya", "Bursa"],
                 Poland: ["Kraków", "Warsaw", "Wrocław", "Gdańsk", "Poznań", "Łódź"]
             }
         }
@@ -28,6 +29,7 @@ class Cities extends React.Component {
     }
 
     handleClick (country, event) {
+        event.preventDefault();
         const cities = [...this.state.europe[country]];
         const rand = Math.floor(Math.random() * cities.length);
         const city = cities.length ? cities.splice(rand, 1)[0] : null;
@@ -42,7 +44,6 @@ class Cities extends React.Component {
     }
 
     render () {
-
         return (
             <div>
                 <ul className="countries">

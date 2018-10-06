@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/components/cities.scss';
 
 class Cities extends React.Component {
     constructor() {
