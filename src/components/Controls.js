@@ -14,7 +14,6 @@ class Controls extends React.Component {
     }
 
     getLives() {
-        // console.log("getLives: " + this.props.lives);
         const num = this.props.lives;
         const percentage = num === 10 ? 100 : (num * 10);
         return percentage + "%";

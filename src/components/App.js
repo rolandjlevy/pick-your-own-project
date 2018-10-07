@@ -21,6 +21,7 @@ class App extends React.Component {
     this.cleanCityPhotos = this.cleanCityPhotos.bind(this);
     this.randomiseChoices = this.randomiseChoices.bind(this);
     this.receiveChoice = this.receiveChoice.bind(this);
+    this.submitScore = this.submitScore.bind(this);
 
     this.state = {
       results: [],
@@ -44,6 +45,7 @@ class App extends React.Component {
         lives: 10,
         prevPhoto: 0,
         choice: null,
+        choiceSubmitted: null,
         choices: this.randomiseChoices (),
         results: this.cleanCityPhotos(body.results),
         resultsTotal: body.total,
@@ -68,7 +70,7 @@ class App extends React.Component {
       }
   }
 
-  /* remove /clean irrelevant photos after fetch
+  /* remove / clean irrelevant photos after fetch
   /////////////////////////////////////////////*/
 
   cleanCityPhotos (results) {
@@ -120,17 +122,38 @@ class App extends React.Component {
     return choices;
   }
 
-  /* set user's choice from <Choices>
+  /* set user's choice from <Choices> and display final score
   /////////////////////////////////////////////*/
 
   receiveChoice(choice) {
-    this.setState({ choice: choice })
+    (!this.state.choiceSubmitted) &&
+    this.setState({
+      choice: choice,
+      choiceSubmitted: true
+    })
   }
 
-  /* render <Countries> <Cities> <Controls> <Choices>
-  /////////////////////////////////////////////*/
+  submitScore() {
+    const won = this.state.choice == this.state.currentCity ? 1 : 0;
+    const score = won ? won * this.state.lives * 10 : 0;
+    const result = won ? `Correct answer! with ${this.state.lives} lives left` : `Wrong answer,`;
+    return  <div className="choices">
+              <div className="choices__score">
+                {result} you scored {score} out of 100 points
+              </div>
+            </div>
+  }
+
+  /* render <Countries> <Cities> <Controls> <Choices> and score
+  //////////////////////////////////////////////////////////////*/
 
   render(){
+
+    const countries = 
+      (this.state.results) ?
+      <Countries 
+        receiveLocation={this.receiveLocation} 
+      /> : null;
 
     const cities =  
       (this.state.results.length && this.state.currentCity) ?
@@ -142,31 +165,37 @@ class App extends React.Component {
         cityUrl={this.state.cityUrl}
       /> : null;
 
+    const controls = 
+      (this.state.results && this.state.currentCity) ?
+      <Controls 
+        controlCurrentPhoto={this.controlCurrentPhoto} 
+        currentPhoto={this.state.currentPhoto} 
+        lives={this.state.lives} 
+      /> : null;
+
+    const choices = 
+      (this.state.results && this.state.currentCity && this.state.choices) ?
+      <Choices 
+        receiveChoice={this.receiveChoice} 
+        choice={this.state.choice} 
+        choices={this.state.choices} 
+        currentCity={this.state.currentCity}
+      /> : null;  
+
+      const score = (this.state.choiceSubmitted) ? this.submitScore() : null;  
+
     return (
       <div className="app">
-          <div className="intro-message">Choose a country and try to guess the city...</div>
-          { 
-            this.state.results && 
-            <Countries receiveLocation={this.receiveLocation} />
-          }
-          {cities}
-          {
-            this.state.results && this.state.currentCity &&
-            <Controls 
-              controlCurrentPhoto={this.controlCurrentPhoto} 
-              currentPhoto={this.state.currentPhoto} 
-              lives={this.state.lives} 
-            />
-          }
-          {
-            this.state.results && this.state.currentCity && this.state.choices &&
-            <Choices 
-              receiveChoice={this.receiveChoice} 
-              choice={this.state.choice} 
-              choices={this.state.choices} 
-              currentCity={this.state.currentCity}
-            />
-          }
+
+          <div className="intro-message">
+            Choose a country and try to guess the city...
+          </div>
+
+          { countries }
+          { cities }
+          { controls }
+          { choices }
+          { score }
 
       </div>
     )

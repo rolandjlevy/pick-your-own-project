@@ -54,10 +54,7 @@ class Choices extends React.Component {
                     </div>
 
                 </div>
-                {/* <button class='target'>
-                    This answer
-                    <span>OK</span>
-                </button> */}
+                
             </div>
         )
     }
