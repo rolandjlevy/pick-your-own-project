@@ -22,7 +22,7 @@ class Controls extends React.Component {
     render () {
         
         return (
-            <div className="controls__container">
+            <div id="controls" className="controls__container">
                 <div className="controls__buttons">
                     <a href="#" onClick={event => this.handleControls(-1, event)}>
                         <i className="fas fa-angle-double-left fa-inverse"></i>

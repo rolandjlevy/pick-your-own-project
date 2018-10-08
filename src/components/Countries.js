@@ -8,6 +8,11 @@ class Cities extends React.Component {
 
         this.state = {
             europe: {
+                UK: ["London", "Manchester", "Brighton", "Cornwall", "Edinburgh", "Liverpool", "Bristol"],
+                Spain: ["Madrid", "Barcelona", "Seville", "Valencia", "Granada", "Malaga"],
+                Italy: ["Rome", "Venice", "Milan", "Florence", "Naples"],
+                France:["Paris", "Marseille", "Lyon"],
+                Germany: ["Berlin", "Munich", "Hamburg", "Frankfurt", "Cologne"],
                 USA: ["Chicago", "New York", "Washington", "Boston", "Dallas", "Houston", "Philadelphia", "Texas", "Atlanta", "Phoenix", "Detroit", "Miami"],
                 Russia: ["Moscow"],
                 China: ["Beijing", "Shanghai", "Chengdu", "Guangzhou"],
@@ -15,11 +20,16 @@ class Cities extends React.Component {
                 Poland: ["Warsaw"]
             },
             europeFullArrays: {
+                UK: ["London", "Manchester", "Brighton", "Cornwall", "Edinburgh", "Liverpool", "Bristol"],
+                Spain: ["Madrid", "Barcelona", "Seville", "Valencia", "Granada", "Malaga"],
+                Italy: ["Rome", "Venice", "Milan", "Florence", "Naples", "Pisa"],
+                France:["Paris", "Marseille", "Bordeaux", "Toulouse", "Lyon", "Montpellier"],
+                Germany: ["Berlin", "Munich", "Hamburg", "Frankfurt", "Cologne"],
                 USA: ["Chicago", "New York", "Washington", "Boston", "Dallas", "Houston", "Philadelphia", "Texas", "Atlanta", "Phoenix", "Detroit", "Miami"],
                 Russia: ["Moscow", "St Petersburg", "Kazan", "Yekaterinburg", "Novosibirsk", "Sochi"],
                 China: ["Beijing", "Shanghai", "Chengdu", "Guangzhou", "Hangzhou", "Shenzhen"],
                 Turkey: ["Istanbul", "Antalya", "Izmir", "Ankara", "Bodrum", "Konya", "Bursa"],
-                Poland: ["Kraków", "Warsaw", "Wrocław", "Gdańsk", "Poznań", "Łódź"]
+                Poland: ["Kraków", "Warsaw", "Wrocław", "Gdańsk", "Poznań", "Łódź"],
             }
         }
     }

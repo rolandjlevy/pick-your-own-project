@@ -3,10 +3,12 @@ import '../styles/components/score.scss';
 
 class Score extends React.Component {
     constructor () {
-        super();    
-        this.submitScore = this.submitScore.bind(this);
+        super();
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.renderScore = this.renderScore.bind(this);
+
         this.state = {
             input: ""
         }
@@ -14,20 +16,20 @@ class Score extends React.Component {
 
     handleSubmit (event) {
         event.preventDefault();
-        this.state.input.length && console.log(this.state.input);
+        this.state.input.length && this.props.addFavourites(this.state.input);
     }
 
     handleChange (event) {
         this.state.input =  event.target.value;
     }
 
-    submitScore() {
+    renderScore() {
         const won = this.props.choice == this.props.currentCity ? 1 : 0;
         const result = won ? 
             `Correct answer! with ${this.props.lives} ${this.props.lives === 1 ? `life` : `lives`} left you scored ${this.props.lives * 10} out of 100 points. Please add your name to the top scores.`
             : `Wrong answer, you scored 0 points`;
     
-        return  <div className="score">
+        return <div className="score">
                     <div className="score__header">
                         Your score
                     </div>
@@ -35,8 +37,7 @@ class Score extends React.Component {
                         <div>
                             {result}
                         </div>
-                        { 
-                        won ? 
+                        { won ? 
                             <form onSubmit={this.handleSubmit}>
                                 <input 
                                     onChange={this.handleChange}
@@ -50,7 +51,7 @@ class Score extends React.Component {
                                     type="submit">
                                     Submit
                                 </button>
-                            </form> : null 
+                            </form> : null
                         }
                     </div>
                 </div>
@@ -58,7 +59,7 @@ class Score extends React.Component {
 
     render () {
         return (
-            this.submitScore()
+            this.renderScore()
         )
     }
 }

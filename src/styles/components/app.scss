@@ -15,7 +15,8 @@
 
 html {
   height: 100%;
-  scroll-behavior:smooth;
+  scroll-behavior: smooth;
+  overflow: auto;
   background-color: var(--bg-color);
 }
 
@@ -72,7 +73,9 @@ body {
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+//   flex-direction: row;
+//   justify-content: center;
   top: 0;
   left: 0;
   width: 100%;
@@ -81,7 +84,9 @@ body {
   vertical-align: bottom;
   background-color: var(--header-color);
 
-  &__title {
+  
+
+  &__title, &__fame {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

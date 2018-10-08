@@ -11,7 +11,7 @@ class Choices extends React.Component {
 
     handleClick(choice, event) {
       this.props.receiveChoice(choice);
-      location.href = "#choices";
+      window.location.href = "#controls";
     }
 
     getChoice(n) {
@@ -39,8 +39,8 @@ class Choices extends React.Component {
         return (
             <div className="choices">
 
-                <div id="choices" className="choices__header">
-                    Which city is this?
+                <div className="choices__header">
+                    Which city is it?
                 </div>
 
                 <div className="choices__body">

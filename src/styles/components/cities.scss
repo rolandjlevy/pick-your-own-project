@@ -1,6 +1,10 @@
 .city__photos {
     max-width: 350px;
 
+    &__loader {
+        display: none;
+    }
+
     &__list {
         display: flex;
         flex-direction: row;

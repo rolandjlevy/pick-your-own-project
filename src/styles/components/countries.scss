@@ -3,11 +3,21 @@
 .countries {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-content: space-around;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 100%;
+    min-width: 100%;
+    max-width: 350px;
     padding: 0;
-    margin-bottom: 1rem;
+    margin: 0 0 1.5rem 0;
+    -webkit-overflow-scrolling: initial;
+    // &::-webkit-scrollbar {
+    //     display: initial;
+    // }
 }
+
 
 .country__button-none, .country__button-selected {
     padding: 0.3rem 0.5rem;
