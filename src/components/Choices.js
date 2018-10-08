@@ -10,7 +10,8 @@ class Choices extends React.Component {
     }
 
     handleClick(choice, event) {
-        this.props.receiveChoice(choice);
+      this.props.receiveChoice(choice);
+      location.href = "#choices";
     }
 
     getChoice(n) {
@@ -26,7 +27,7 @@ class Choices extends React.Component {
     }
 
     createButton (choice, number) {
-        return <div 
+        return <div
             onClick={event => this.handleClick(this.props.choices[number], event)} 
             className={this.getChoice(number)}>
             {choice}: {this.props.choices[number]} 
@@ -38,7 +39,7 @@ class Choices extends React.Component {
         return (
             <div className="choices">
 
-                <div className="choices__header">
+                <div id="choices" className="choices__header">
                     Which city is this?
                 </div>
 

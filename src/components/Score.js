@@ -2,7 +2,6 @@ import React from 'react';
 import '../styles/components/score.scss';
 
 class Score extends React.Component {
-
     constructor () {
         super();    
         this.submitScore = this.submitScore.bind(this);
@@ -25,7 +24,7 @@ class Score extends React.Component {
     submitScore() {
         const won = this.props.choice == this.props.currentCity ? 1 : 0;
         const result = won ? 
-            `Correct answer! with ${this.props.lives} lives left you scored ${this.props.lives * 10} out of 100 points. Please add your name to the top scores.`
+            `Correct answer! with ${this.props.lives} ${this.props.lives === 1 ? `life` : `lives`} left you scored ${this.props.lives * 10} out of 100 points. Please add your name to the top scores.`
             : `Wrong answer, you scored 0 points`;
     
         return  <div className="score">
