@@ -6,6 +6,7 @@ class Choices extends React.Component {
         super();
         this.handleClick = this.handleClick.bind(this);
         this.getChoice = this.getChoice.bind(this);
+        this.createButton = this.createButton.bind(this);
     }
 
     handleClick(choice, event) {
@@ -24,15 +25,15 @@ class Choices extends React.Component {
         }
     }
 
-    render () {
+    createButton (choice, number) {
+        return <div 
+            onClick={event => this.handleClick(this.props.choices[number], event)} 
+            className={this.getChoice(number)}>
+            {choice}: {this.props.choices[number]} 
+        </div>
+    }
 
-        const createButton = (choice, number) => {
-            return <div 
-                onClick={event => this.handleClick(this.props.choices[number], event)} 
-                className={this.getChoice(number)}>
-                {choice}: {this.props.choices[number]} 
-            </div>
-        }
+    render () {
 
         return (
             <div className="choices">
@@ -44,13 +45,13 @@ class Choices extends React.Component {
                 <div className="choices__body">
 
                     <div className="choices__col">
-                        {createButton("A", 0)}
-                        {createButton("C", 1)}
+                        {this.createButton("A", 0)}
+                        {this.createButton("C", 1)}
                     </div>
                     
                     <div className="choices__col">
-                        {createButton("B", 2)}
-                        {createButton("D", 3)}
+                        {this.createButton("B", 2)}
+                        {this.createButton("D", 3)}
                     </div>
 
                 </div>

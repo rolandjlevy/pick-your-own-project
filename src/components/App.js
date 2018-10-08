@@ -3,6 +3,7 @@ import Countries from './Countries';
 import Cities from './Cities';
 import Controls from './Controls';
 import Choices from './Choices';
+import Score from './Score';
 import '../styles/components/app.scss';
 
 class App extends React.Component {
@@ -139,7 +140,21 @@ class App extends React.Component {
     const result = won ? `Correct answer! with ${this.state.lives} lives left` : `Wrong answer,`;
     return  <div className="choices">
               <div className="choices__score">
-                {result} you scored {score} out of 100 points
+                <div>
+                  {result} you scored {score} out of 100 points
+                </div>
+                <form onSubmit={this.handleSubmit}>
+                  <input 
+                      onChange={this.handleChange}
+                      className="choices__score__input" 
+                      placeholder="Enter your name" 
+                      autoComplete="off" 
+                      id="name"
+                  />
+                  <button 
+                    className="choices__score__submit"
+                    type="submit">Submit</button>
+                </form>
               </div>
             </div>
   }
@@ -182,6 +197,10 @@ class App extends React.Component {
         currentCity={this.state.currentCity}
       /> : null;  
 
+      const scoreComp = 
+      (this.state.choiceSubmitted) ?
+      <Score 
+      /> : null;
       const score = (this.state.choiceSubmitted) ? this.submitScore() : null;  
 
     return (

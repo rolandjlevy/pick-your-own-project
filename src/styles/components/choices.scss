@@ -15,21 +15,21 @@
     border-radius: 0.3rem 0.3rem 0 0;
   }
 
-  &__body, &__score {
-    line-height: 1.5rem;
+  &__body {
     display: flex;
     flex-direction: row;
-  }
-
-  &__body {
     text-align: center;
+    line-height: 1.5rem;
     background-color: #fff;
     border-radius: 0 0 0.3rem 0.3rem;
     padding: 0.5rem 1rem 0.5rem 0;
   }
 
   &__score {
+    display: flex;
+    flex-direction: column;
     text-align: left;
+    line-height: 1.5rem;
     background-color: #fff;
     border-radius: 0.3rem;
     padding: 0.5rem 1rem;
@@ -44,6 +44,18 @@
     -ms-animation: fadein 0.7s;
     -o-animation: fadein 0.7s;
     animation: fadein 0.7s;
+      &__input {
+        padding: 0.2rem 0.5rem;
+        margin: 0.5rem 0;
+        border: 1px solid var(--bright-color);
+      }
+      &__submit {
+        padding: 0.2rem 0.5rem;
+        margin: 0;
+        color: #fff;
+        border: 1px solid var(--bright-color);
+        background-color: var(--bright-color);
+      }
   }
   
   &__col {
