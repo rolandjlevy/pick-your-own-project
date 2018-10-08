@@ -22,7 +22,6 @@ class App extends React.Component {
     this.cleanCityPhotos = this.cleanCityPhotos.bind(this);
     this.randomiseChoices = this.randomiseChoices.bind(this);
     this.receiveChoice = this.receiveChoice.bind(this);
-    this.submitScore = this.submitScore.bind(this);
 
     this.state = {
       results: [],
@@ -48,9 +47,7 @@ class App extends React.Component {
         choice: null,
         choiceSubmitted: null,
         choices: this.randomiseChoices (),
-        results: this.cleanCityPhotos(body.results),
-        resultsTotal: body.total,
-        resultsTotalPages: body.total_pages,
+        results: this.cleanCityPhotos(body.results)
       });
     });
     this.keepArray.push(this.state.currentCity.toLowerCase());
@@ -60,6 +57,7 @@ class App extends React.Component {
   /////////////////////////////////////////////*/
 
   controlCurrentPhoto (direction) {
+    if (!this.state.choiceSubmitted) {
       const maxNum = 10;
       let num = this.state.currentPhoto + direction;
       num = num > maxNum-1 ? maxNum-1 : (num < 0 ? 0 : num);
@@ -69,6 +67,7 @@ class App extends React.Component {
         lives--;
         this.setState({ lives: lives, prevPhoto: num })
       }
+    }
   }
 
   /* remove / clean irrelevant photos after fetch
@@ -134,31 +133,6 @@ class App extends React.Component {
     })
   }
 
-  submitScore() {
-    const won = this.state.choice == this.state.currentCity ? 1 : 0;
-    const score = won ? won * this.state.lives * 10 : 0;
-    const result = won ? `Correct answer! with ${this.state.lives} lives left` : `Wrong answer,`;
-    return  <div className="choices">
-              <div className="choices__score">
-                <div>
-                  {result} you scored {score} out of 100 points
-                </div>
-                <form onSubmit={this.handleSubmit}>
-                  <input 
-                      onChange={this.handleChange}
-                      className="choices__score__input" 
-                      placeholder="Enter your name" 
-                      autoComplete="off" 
-                      id="name"
-                  />
-                  <button 
-                    className="choices__score__submit"
-                    type="submit">Submit</button>
-                </form>
-              </div>
-            </div>
-  }
-
   /* render <Countries> <Cities> <Controls> <Choices> and score
   //////////////////////////////////////////////////////////////*/
 
@@ -197,11 +171,14 @@ class App extends React.Component {
         currentCity={this.state.currentCity}
       /> : null;  
 
-      const scoreComp = 
+      const score = 
       (this.state.choiceSubmitted) ?
       <Score 
+        // {...this.state}
+        choice={this.state.choice} 
+        currentCity={this.state.currentCity}
+        lives={this.state.lives}
       /> : null;
-      const score = (this.state.choiceSubmitted) ? this.submitScore() : null;  
 
     return (
       <div className="app">
