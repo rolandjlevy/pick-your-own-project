@@ -23,7 +23,7 @@ class App extends React.Component {
         this.randomiseChoices = this.randomiseChoices.bind(this);
         this.receiveChoice = this.receiveChoice.bind(this);
         this.addFavourites = this.addFavourites.bind(this);
-        this.displayFavourites = this.displayFavourites.bind(this);
+        this.renderFavourites = this.renderFavourites.bind(this);
 
         this.state = {
             results: [],
@@ -44,20 +44,26 @@ class App extends React.Component {
         });
     }
 
-    displayFavourites () {
-        return [...this.state.favourites].sort( (a, b) => b.score - a.score);
+    renderFavourites () {
+        const header = <ul className="score__board__header" key={(+new Date)+1}><li>Name</li><li>Score</li><li>City</li><li>Date</li></ul>;
+        const rows = [header].concat([...this.state.favourites].unshift(header));
+        console.log(rows)
+        return rows.sort( (a, b) => b.score - a.score)
+        .map(item => {
+            return <ul className="score__board__rows" key={item.id}><li>{item.name}</li><li>{item.score}</li><li>{item.city}</li><li>{item.date}</li></ul>;
+        });
     }
 
     addFavourites(name) {
         const date = new Date();
         const addZero = n => n < 10 ? `0${n}` : n;
         const formattedDate = `${addZero(date.getDay())}-${addZero(date.getMonth())}-${date.getFullYear()}`;
-        const score = {name, score: this.state.lives * 10, date: formattedDate};
+        const score = {name, score: this.state.lives * 10, city: this.state.currentCity, date: formattedDate, id: +new Date};
         this.setState({
-            favourites: this.state.favourites.concat(score)
+            favourites: this.state.favourites.concat(score),
+            showFavourites: true
         }, () => {
             window.localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
-            console.log(this.displayFavourites());
         });
     }
 
@@ -76,6 +82,7 @@ class App extends React.Component {
                 prevPhoto: 0,
                 choice: null,
                 choiceSubmitted: null,
+                showFavourites: null,
                 choices: this.randomiseChoices (),
                 results: this.cleanCityPhotos(body.results)
             });
@@ -212,6 +219,9 @@ class App extends React.Component {
             addFavourites={this.addFavourites}
         /> : null;
 
+        const showFavourites = this.state.showFavourites ?
+        this.renderFavourites() : null;
+
         return (
             <div className="app">
 
@@ -224,6 +234,7 @@ class App extends React.Component {
                 { controls }
                 { choices }
                 { score }
+                { showFavourites }
 
             </div>
         )

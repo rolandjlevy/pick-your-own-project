@@ -20,25 +20,25 @@
     -o-animation: fadein 0.7s;
     animation: fadein 0.7s;
 
-        &__header {
-            line-height: 2rem;
-            text-align: center;
-            padding: 1rem 1rem;
-            background-color: var(--bright-color);
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border-radius: 0.3rem 0.3rem 0 0;
-        }
-    
-        &__body {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            line-height: 1.5rem;
-            background-color: #fff;
-            border-radius: 0 0 0.3rem 0.3rem;
-            padding: 0.5rem 1rem 0.5rem 1rem;
+    &__header {
+        line-height: 2rem;
+        text-align: center;
+        padding: 1rem 1rem;
+        background-color: var(--bright-color);
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border-radius: 0.3rem 0.3rem 0 0;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        line-height: 1.5rem;
+        background-color: #fff;
+        border-radius: 0 0 0.3rem 0.3rem;
+        padding: 0.5rem 1rem 0.5rem 1rem;
 
         &__input {
             padding: 0.2rem 0.5rem;
@@ -54,4 +54,25 @@
             background-color: var(--bright-color);
         }
     }
+
+    &__board__rows, &__board__header {
+        width: 350px;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        margin-bottom: 0.2rem;
+        li {
+            padding: 0 1rem;
+            list-style: none;
+            background-color: #fff;
+        }
+        li:first-child { width: 25%; }  // name
+        li:nth-child(2) { width: 10%; } // score
+        li:nth-child(3) { width: 30%; } // city
+        li:last-child { width: 35%; }   // date
+    }
+    &__board__header {
+        font-weight: 700;
+    }
+
 }
