@@ -60,6 +60,9 @@
         height: 320px;
         width: 350px;
         border-radius: 0.3rem;
+        filter: drop-shadow(0 0 3px unquote('#30303050'));
+        margin: 2rem;
+        padding: 2rem;
     }
 
     &__board__rows, &__board__header {

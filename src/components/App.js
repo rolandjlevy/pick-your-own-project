@@ -36,19 +36,15 @@ class App extends React.Component {
         // localStorage.clear();
     }
 
+    /* initialise, add and render favourites 
+    // for storing score, name, id and date into localStorage
+    ////////////////////////////////////////////////////////*/
+
     componentDidMount(){
         const favourites = window.localStorage.getItem('favourites');
         const favouritesArray = favourites ? JSON.parse(favourites) : [];
         this.setState({
             favourites: favouritesArray
-        });
-    }
-
-    renderFavourites () {
-        const rows = [...this.state.favourites];
-        return rows.sort( (a, b) => b.score === a.score ? b.id - a.id : b.score - a.score)
-        .map(item => {
-            return <ul className="score__board__rows" key={item.id}><li>{item.name}</li><li>{item.score}</li><li>{item.city}</li><li>{item.date}</li></ul>;
         });
     }
 
@@ -62,6 +58,14 @@ class App extends React.Component {
             showFavourites: true
         }, () => {
             window.localStorage.setItem('favourites', JSON.stringify(this.state.favourites));
+        });
+    }
+
+    renderFavourites () {
+        const rows = [...this.state.favourites];
+        return rows.sort( (a, b) => b.score === a.score ? b.id - a.id : b.score - a.score)
+        .map(item => {
+            return <ul className="score__board__rows" key={item.id}><li>{item.name}</li><li>{item.score}</li><li>{item.city}</li><li>{item.date}</li></ul>;
         });
     }
 
