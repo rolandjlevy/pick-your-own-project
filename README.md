@@ -1,48 +1,61 @@
-# Pick your own project
+# 'which city?' quiz game app
 
-Build an app of your choice.
+![Screenshot](./assets/react-cinema-screenshot-mobile.png) 
+![Screenshot](./assets/react-cinema-screenshot-ipad.png) 
 
-- You are free to use any technologies covered so far, but feel free to try new technologies you find interesting.
-- Keep it simple. Aim to get the basic functionality working on day one. You can then extend it on days two and three.
-- Feel free to use an external API to provide additional functionality to your app. Use an API that either does not have any authentication or uses API keys.
-- This is an opportunity to practice the parts you have challenging so far and improve your understanding of them.
-- Use pen and paper to draw a diagram of the webpage layout before starting to code. Have a think about what components you will need in advance.
+## Objective > what does it do?
+**which city?** is a simple quiz game app. Choose a country and try to guess which city it is. It is designed for mobile view and offers a user-friendly experience.
+
+## Functionality > How does it work?
++ The game begins with the user selecting a country 
++ A city of the selected country is chosen randomly
++ The app fetches 10 relevant photos for that city from the [Unsplash photos](http://www.unsplash.com) API
++ Filtering functions ensure that the photos are relevant to the city
++ The app then uses React and SCSS to display the photos 
++ The user then tries to guess the city by going through the photos
++ For each photo that is seen one life is lost
++ When the user finally makes a choice the result and score are displayed
++ If the answer is correct the user can enter their name into the top scores table using localStorage
+
+> [View 'what city?' repo on Github](https://github.com/rolandjlevy/pick-your-own-project/)
+
+## Technology used
++ Unsplash API
++ React
++ Classnames
++ Flex-box
++ SCSS
+
+## Stages of development
++  Set up API and read the **Unsplash API** documentation 
++  Created functionality for the initial search query
++  Created smart pagination, with scrolling to see all results
++  Retrieved the data for selected movie 
++ Used React to display the poster image, year, IMDB rating, director, description etc...
++ Used SCSS to style the UI
+
+## Features
 - Use prop-types and stateless components where appropriate.
 - Try to use Sass to create a separate stylesheet for each component.
-- Try to add some unit testing. Some parts will be easier to test than others, focus on those first.
-- Think about how to organise your data in advance
-- Make sure your app is responsive
-- Commit frequently
-- Create pull request at the end
-- Demos will be at 4pm on Friday
-- Keep it simple
++ Responsive search preview - results are updated each time a letter  is entered and shown below the search box
++ Smart pagination allows users to quickly navigate all pages of the search results
 
-## Technical notes
+> + if the search input is more or less than 3 letters
+> + if the search input has returned a valid result or not
+> + How many results and pages of results have been found
 
-* Run `npm install` after cloning to download all dependencies
-* Use `npm run dev -- --watch` to build React
-* Use `npm test` or `npm test -- --watchAll` to run tests
+## Problems and errors to be fixed
++ Implement the ipad and desktop view for better responsiveness
 
-## README
+## Desired features with more time
++ Run some unit testing
 
-* Produce a README.md which explains
-  * what the project does
-  * what technologies it uses
-  * how to build it and run it
-  * any unresolved issues the user should be aware of
++ Allow users to mark movies as favourites and use localStorage to save the favourites into a sortable list
++ Added a featured movies section
++ Include infinate scrolling with the initial results
++ Use the [Youtube API](https://developers.google.com/youtube/v3/) to load a trailer into the detailed results area
 
-## Inspiration
 
-- Take a look at [https://public-apis.jeremyfairbank.com/](https://public-apis.jeremyfairbank.com/) or [https://github.com/toddmotto/public-apis](https://github.com/toddmotto/public-apis) for possible APIs to use.
 
-## Default option
 
-If you are struggling to think of a project to build. Try to create a Top Trumps using the [Star Wars API](https://swapi.co/) which allows one user to play the game against the computer.
 
-- On load, fetch all vehicles from [https://swapi.co/api/vehicles/](https://swapi.co/api/vehicles/) end point.
-- Randomise the cards and deal half to player and half to computer.
-- Display top card to user
-- Allow user to pick an attribute from their card such as `cost_in_credits`, `length`, `max_atmosphering_speed`, `crew`, `passengers`, `cargo_capacity`.
-- If the value for chosen attribute is higher on the user's card than on computer's top card, they win the computer's card and it should be taken from computer's deck and added to the bottom of the user's deck. If the attribute is higher on the computer's top card, then user's card should be taken from the user's deck and added to the bottom of computer's deck.
-- Game continues until either user or computer has all the cards.
-- Implement some features of your choosing.

@@ -45,10 +45,8 @@ class App extends React.Component {
     }
 
     renderFavourites () {
-        const header = <ul className="score__board__header" key={(+new Date)+1}><li>Name</li><li>Score</li><li>City</li><li>Date</li></ul>;
-        const rows = [header].concat([...this.state.favourites].unshift(header));
-        console.log(rows)
-        return rows.sort( (a, b) => b.score - a.score)
+        const rows = [...this.state.favourites];
+        return rows.sort( (a, b) => b.score === a.score ? b.id - a.id : b.score - a.score)
         .map(item => {
             return <ul className="score__board__rows" key={item.id}><li>{item.name}</li><li>{item.score}</li><li>{item.city}</li><li>{item.date}</li></ul>;
         });
@@ -57,8 +55,8 @@ class App extends React.Component {
     addFavourites(name) {
         const date = new Date();
         const addZero = n => n < 10 ? `0${n}` : n;
-        const formattedDate = `${addZero(date.getDay())}-${addZero(date.getMonth())}-${date.getFullYear()}`;
-        const score = {name, score: this.state.lives * 10, city: this.state.currentCity, date: formattedDate, id: +new Date};
+        const formattedDate = `${addZero(date.getDate())}-${addZero(date.getMonth()+1)}-${date.getFullYear()}`;
+        const score = {name, score: (Number(this.state.lives) * 10), city: this.state.currentCity, date: formattedDate, id: +new Date};
         this.setState({
             favourites: this.state.favourites.concat(score),
             showFavourites: true
@@ -220,7 +218,10 @@ class App extends React.Component {
         /> : null;
 
         const showFavourites = this.state.showFavourites ?
-        this.renderFavourites() : null;
+        <div className="score__board"> 
+            <ul className="score__board__header"><li>Name</li><li>Score</li><li>City</li><li>Date</li></ul>
+            {this.renderFavourites()}
+        </div> : null;
 
         return (
             <div className="app">

@@ -55,20 +55,26 @@
         }
     }
 
-    &__board__rows, &__board__header {
+    &__board {
+        overflow-y: auto;
+        height: 320px;
         width: 350px;
+        border-radius: 0.3rem;
+    }
+
+    &__board__rows, &__board__header {
         display: flex;
         flex-direction: row;
         padding: 0;
         margin-bottom: 0.2rem;
         li {
-            padding: 0 1rem;
+            padding: 0 0 0 1rem;
             list-style: none;
             background-color: #fff;
         }
-        li:first-child { width: 25%; }  // name
-        li:nth-child(2) { width: 10%; } // score
-        li:nth-child(3) { width: 30%; } // city
+        li:first-child { width: 20%; }  // name
+        li:nth-child(2) { width: 20%; } // score
+        li:nth-child(3) { width: 25%; } // city
         li:last-child { width: 35%; }   // date
     }
     &__board__header {
