@@ -194,7 +194,7 @@ class App extends React.Component {
         /> : null;
 
         const controls = 
-        (this.state.results && this.state.currentCity) ?
+        (this.state.results.length && this.state.currentCity) ?
         <Controls 
             controlCurrentPhoto={this.controlCurrentPhoto} 
             currentPhoto={this.state.currentPhoto} 
@@ -221,25 +221,25 @@ class App extends React.Component {
             addFavourites={this.addFavourites}
         /> : null;
 
-        const showFavourites = this.state.showFavourites ?
-        <div className="score__board"> 
+        const showFavourites = <div className="score__board"> 
             <ul className="score__board__header"><li>Name</li><li>Score</li><li>City</li><li>Date</li></ul>
             {this.renderFavourites()}
-        </div> : null;
+        </div>;
 
         return (
             <div className="app">
-
-            <div className="intro-message">
-                Choose a country and guess the city
-            </div>
+                
+                { showFavourites }
+                
+                <div className="intro-message">
+                    Choose a country and guess the city
+                </div>
 
                 { countries }
                 { cities }
                 { controls }
                 { choices }
                 { score }
-                { showFavourites }
 
             </div>
         )

@@ -23,6 +23,7 @@
 + Unsplash API
 + React
 + Classnames
++ BEM
 + Flex-box
 + SCSS
 

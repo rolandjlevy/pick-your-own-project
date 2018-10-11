@@ -48,6 +48,7 @@ body {
   align-items: center;
   padding: 0;
   margin: 0;
+  position: relative;
 }
 
 .intro-message {
@@ -84,7 +85,13 @@ body {
   vertical-align: bottom;
   background-color: var(--header-color);
 
-  
+  &__fame-button {
+    cursor: pointer;
+    opacity: 0.8;
+    &:hover {
+        opacity: 1;
+    }
+}
 
   &__title, &__fame {
     display: flex;
