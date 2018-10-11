@@ -4,9 +4,8 @@ import '../styles/components/loader.scss';
 
 function Cities ({ currentCity, cityUrl, image }) {
     return (
-        <div className="city__photos">
-            {/* <div className="city__photos__loader"><img src="../../../assets/loading.gif"></img></div> */}
-            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div className="city__photos fadein">
+            {/* <div className="city__loading-ring"><div></div><div></div><div></div><div></div></div> */}
             <ul className="city__photos__list">
                 <li>
                     <a title={currentCity} href={cityUrl} target="_blank">

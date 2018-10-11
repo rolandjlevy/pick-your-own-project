@@ -29,7 +29,7 @@ function Choices ({ choice, choices, currentCity, receiveChoice }) {
     }
 
     return (
-        <div className="choices">
+        <div className="choices fadein">
 
             <div className="choices__header">
                 Which city is it?

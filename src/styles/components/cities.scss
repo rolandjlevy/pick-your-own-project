@@ -1,5 +1,6 @@
 .city__photos {
-    max-width: 350px;
+    max-width: var(--box-width);
+    position: relative;
 
     &__loader {
         display: none;
@@ -20,7 +21,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;
-            width: 350px;
+            width: var(--box-width);
             border-radius: 0.3rem;
             filter: drop-shadow(0 0 5px #30303050);
             cursor: default;

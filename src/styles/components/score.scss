@@ -3,22 +3,10 @@
     flex-direction: column;
     text-align: center;
    
-    width: 350px;
+    width: var(--box-width);
     margin: 1rem 0;
     border-radius: 0.3rem;
     filter: drop-shadow(0 0 3px unquote('#30303050'));
-  
-    opacity: 1;
-    @-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    @-moz-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    @-ms-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    @-o-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    -webkit-animation: fadein 0.7s;
-    -moz-animation: fadein 0.7s; 
-    -ms-animation: fadein 0.7s;
-    -o-animation: fadein 0.7s;
-    animation: fadein 0.7s;
 
     &__header {
         line-height: 2rem;
@@ -56,21 +44,24 @@
     }
 
     &__board {
-        z-index: 10;
-        overflow-y: auto;
-        height: 320px;
-        width: 350px;
         border-radius: 0.3rem;
-        filter: drop-shadow(0 0 3px unquote('#30303050'));
-        margin: 0;
-        padding: 0;
+        z-index: 10;
         position: absolute;
+        left: 50%;
         top: 0;
-        left: 64px;
+        margin-left: calc((var(--box-width) / 2) * -1);
+        margin-top: 0;
         display: none;
         &.visible {
             display: block;
         }
+        filter: drop-shadow(0 0 3px unquote('#30303050'));
+    }
+
+    &__board__content {
+        overflow-y: auto;
+        height: var(--box-width);
+        width: var(--box-width);
     }
 
     &__board__rows, &__board__header {
@@ -80,7 +71,7 @@
         margin: 0;
         border-bottom: 1px solid var(--light-grey-color);
         li {
-            padding: 0 0 0 1rem;
+            padding: 0.3rem 0 0.3rem 1rem;
             list-style: none;
             background-color: #fff;
         }
@@ -92,7 +83,8 @@
     &__board__header {
         font-weight: 700;
         li {
-            background-color: var(--light-grey-color);
+            background-color: var(--dark-color);
+            color: #fff;
         }
     }
 

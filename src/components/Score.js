@@ -29,7 +29,7 @@ class Score extends React.Component {
             `Correct answer! with ${this.props.lives} ${this.props.lives === 1 ? `life` : `lives`} left you scored ${this.props.lives * 10} out of 100 points. Please add your name to the top scores.`
             : `Wrong answer, you scored 0 points`;
     
-        return <div className="score">
+        return <div className="score fadein">
                     <div className="score__header">
                         Your score
                     </div>

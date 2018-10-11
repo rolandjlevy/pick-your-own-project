@@ -1,5 +1,5 @@
 .choices {
-  width: 350px;
+  width: var(--box-width);
   margin: 1rem 0;
   border-radius: 0.3rem;
   filter: drop-shadow(0 0 3px unquote('#30303050'));
@@ -33,17 +33,7 @@
     background-color: #fff;
     border-radius: 0.3rem;
     padding: 0.5rem 1rem;
-    opacity: 1;
-    @-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    @-moz-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    @-ms-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    @-o-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-    -webkit-animation: fadein 0.7s;
-    -moz-animation: fadein 0.7s; 
-    -ms-animation: fadein 0.7s;
-    -o-animation: fadein 0.7s;
-    animation: fadein 0.7s;
+    
       &__input {
         padding: 0.2rem 0.5rem;
         margin: 0.5rem 0;

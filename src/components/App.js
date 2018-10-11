@@ -30,7 +30,8 @@ class App extends React.Component {
             currentPhoto: 0,
             lives: 10,
             error: '',
-            favourites: []
+            favourites: [],
+            loaded: true
         }
 
         // localStorage.clear();
@@ -86,7 +87,8 @@ class App extends React.Component {
                 choiceSubmitted: null,
                 showFavourites: null,
                 choices: this.randomiseChoices (),
-                results: this.cleanCityPhotos(body.results)
+                results: this.cleanCityPhotos(body.results),
+                loaded: true
             });
         });
         this.keepArray.push(this.state.currentCity.toLowerCase());
@@ -139,7 +141,8 @@ class App extends React.Component {
         this.setState({
             currentCity: city,
             currentCountry: country,
-            europeFullArrays: europeFullArrays
+            europeFullArrays: europeFullArrays,
+            loaded: false
         }, () => {
             this.fetchLocations ();
         })
@@ -184,7 +187,7 @@ class App extends React.Component {
         /> : null;
 
         const cities =  
-        (this.state.results.length && this.state.currentCity) ?
+        (this.state.results.length && this.state.currentCity && this.state.loaded) ?
         <Cities 
             results={this.state.results} 
             currentPhoto={this.state.currentPhoto} 
@@ -193,8 +196,13 @@ class App extends React.Component {
             cityUrl={this.state.cityUrl}
         /> : null;
 
+        const loader = 
+        (!this.state.loaded) ?
+            <div className="city__loading-ring"><div></div><div></div><div></div><div></div></div>
+        : null;
+
         const controls = 
-        (this.state.results.length && this.state.currentCity) ?
+        (this.state.results.length && this.state.currentCity && this.state.loaded) ?
         <Controls 
             controlCurrentPhoto={this.controlCurrentPhoto} 
             currentPhoto={this.state.currentPhoto} 
@@ -202,7 +210,7 @@ class App extends React.Component {
         /> : null;
 
         const choices = 
-        (this.state.results && this.state.currentCity && this.state.choices) ?
+        (this.state.results && this.state.currentCity && this.state.choices && this.state.loaded) ?
         <Choices 
             receiveChoice={this.receiveChoice} 
             choice={this.state.choice} 
@@ -211,9 +219,8 @@ class App extends React.Component {
         /> : null;  
 
         const score = 
-        (this.state.choiceSubmitted) ?
+        (this.state.choiceSubmitted && this.state.loaded) ?
         <Score 
-            // {...this.state}
             choice={this.state.choice} 
             currentCity={this.state.currentCity}
             lives={this.state.lives}
@@ -221,9 +228,11 @@ class App extends React.Component {
             addFavourites={this.addFavourites}
         /> : null;
 
-        const showFavourites = <div className="score__board"> 
+        const showFavourites = <div className="score__board fadein"> 
             <ul className="score__board__header"><li>Name</li><li>Score</li><li>City</li><li>Date</li></ul>
-            {this.renderFavourites()}
+            <div className="score__board__content"> 
+                {this.renderFavourites()}
+            </div>
         </div>;
 
         return (
@@ -236,6 +245,7 @@ class App extends React.Component {
                 </div>
 
                 { countries }
+                { loader }
                 { cities }
                 { controls }
                 { choices }
