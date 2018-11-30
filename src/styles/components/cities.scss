@@ -1,0 +1,56 @@
+.city__photos {
+    max-width: var(--box-width);
+    position: relative;
+
+    &__loader {
+        display: none;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 1rem;
+
+        &-img {
+            padding: 0;
+            margin: 0;
+            padding-top: 67%;
+            display: block;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            width: var(--box-width);
+            border-radius: 0.3rem;
+            filter: drop-shadow(0 0 5px #30303050);
+            cursor: default;
+            border: 1rem solid white;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+            display: block;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.fade {
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}

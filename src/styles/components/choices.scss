@@ -1,0 +1,86 @@
+.choices {
+  width: var(--box-width);
+  margin: 1rem 0;
+  border-radius: 0.3rem;
+  filter: drop-shadow(0 0 3px unquote('#30303050'));
+
+  &__header {
+    line-height: 2rem;
+    text-align: center;
+    padding: 1rem 1rem;
+    background-color: var(--bright-color);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 0.3rem 0.3rem 0 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    line-height: 1.5rem;
+    background-color: #fff;
+    border-radius: 0 0 0.3rem 0.3rem;
+    padding: 0.5rem 1rem 0.5rem 0;
+  }
+
+  &__score {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.5rem;
+    background-color: #fff;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    
+      &__input {
+        padding: 0.2rem 0.5rem;
+        margin: 0.5rem 0;
+        border: 1px solid var(--bright-color);
+      }
+      &__submit {
+        padding: 0.2rem 0.5rem;
+        margin: 0;
+        color: #fff;
+        border: 1px solid var(--bright-color);
+        background-color: var(--bright-color);
+      }
+  }
+  
+  &__col {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 0 0 0 1rem;
+
+    &-button {
+
+      &-static, &-correct, &-wrong {
+        border-radius: 0.3rem;
+        padding: 0.2rem 0.2rem 0.2rem 0.7rem;
+        margin: 0.5rem 0;
+        cursor: pointer;
+        color: white;
+      }
+      
+      &-correct {
+        background-color: var(--bright-color);
+      }
+      
+      &-wrong {
+        background-color: var(--wrong-color);
+      }
+      
+      &-static {
+        background-color: var(--light-grey-color);
+        color: var(--dark-color); 
+
+        &:hover {
+          background-color: var(--dark-grey-color);
+        }
+      }
+    }
+  }
+}

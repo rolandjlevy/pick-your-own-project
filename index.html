@@ -3,15 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>which city?</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
-    <title>YouJuke</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   </head>
+
   <body>
-    <div className="container">
-      <div id="root"></div>
+    <div class="content">
+
+        <header class="header">
+            <div class="header__title">
+                <li><i class="fas fa-city fa-1x fa-inverse"></i></li>
+                <li class="header__title-light">which city?</li>
+            </div>
+            <div class="header__fame">
+                <li onClick="toggleScoreBoard ();" class="header__fame-button"><i class="fas fa-trophy fa-1x fa-inverse"></i></li>
+            </div>
+        </header>
+
+        <div id="root"></div>
+        
+        <footer class="footer">
+            <div class="footer__contact pad-top">CALL US ON 07901 972 811 or <a href="mailto:roland@growmediauk.com">EMAIL US</a></div>
+            <div class="footer__contact pad-bottom">Find us on <a href="www.linkedin.com/in/roland-levy-4645b9163">LINKEDIN</a> and <a href="#">TWITTER</a></div>
+        </footer>
     </div>
-    <script src="dist/bundle.js"></script>
+
+    <script src="./dist/bundle.js"></script>
+    <script src="./src/score-board-button.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
   </body>
 </html>
