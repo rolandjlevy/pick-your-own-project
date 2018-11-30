@@ -1,12 +1,18 @@
-# 'which city?' quiz game app
+![Screenshot](./assets/which-city-screenshots.png)
 
-![Screenshot](./assets/react-cinema-screenshot-mobile.png) 
-![Screenshot](./assets/react-cinema-screenshot-ipad.png) 
+# Which City?
+## Quiz game app
+To play the **Which City?** quiz game simply choose a country, browse the photos and try to guess which city it is. It is designed for mobile view and offers a user-friendly experience.
 
-## Objective > what does it do?
-**which city?** is a simple quiz game app. Choose a country and try to guess which city it is. It is designed for mobile view and offers a user-friendly experience.
+> [View 'what city?' repo on Github](https://github.com/rolandjlevy/which-city)
 
-## Functionality > How does it work?
+## Installation and set up
++ Clone this repo
++ Run `npm install` to install dependencies
++ Run `npm run dev` to create a development build with webpack
++ Open index.html file in the browser
+
+## Functionality and features
 + The game begins with the user selecting a country 
 + A city of the selected country is chosen randomly
 + The app fetches 10 relevant photos for that city from the [Unsplash photos](http://www.unsplash.com) API
@@ -17,45 +23,21 @@
 + When the user finally makes a choice the result and score are displayed
 + If the answer is correct the user can enter their name into the top scores table using localStorage
 
-> [View 'what city?' repo on Github](https://github.com/rolandjlevy/pick-your-own-project/)
-
 ## Technology used
-+ Unsplash API
 + React
 + Classnames
 + BEM
 + Flex-box
 + SCSS
++ Unsplash API
++ Webpack
 
 ## Stages of development
-+  Set up API and read the **Unsplash API** documentation 
-+  Created functionality for the initial search query
-+  Created smart pagination, with scrolling to see all results
-+  Retrieved the data for selected movie 
-+ Used React to display the poster image, year, IMDB rating, director, description etc...
-+ Used SCSS to style the UI
-
-## Features
-- Use prop-types and stateless components where appropriate.
-- Try to use Sass to create a separate stylesheet for each component.
-+ Responsive search preview - results are updated each time a letter  is entered and shown below the search box
-+ Smart pagination allows users to quickly navigate all pages of the search results
-
-> + if the search input is more or less than 3 letters
-> + if the search input has returned a valid result or not
-> + How many results and pages of results have been found
-
-## Problems and errors to be fixed
-+ Implement the ipad and desktop view for better responsiveness
++ Set up API and read the **Unsplash API** documentation 
 
 ## Desired features with more time
++ Implement the ipad and desktop view for better responsiveness
 + Run some unit testing
-
-+ Allow users to mark movies as favourites and use localStorage to save the favourites into a sortable list
-+ Added a featured movies section
-+ Include infinate scrolling with the initial results
-+ Use the [Youtube API](https://developers.google.com/youtube/v3/) to load a trailer into the detailed results area
-
 
 
 
