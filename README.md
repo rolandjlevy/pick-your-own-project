@@ -4,7 +4,9 @@
 ## Quiz game app
 To play the **Which City?** quiz game simply choose a country, browse the photos and try to guess which city it is. It is designed for mobile view and offers a user-friendly experience.
 
-> [View 'what city?' repo on Github](https://github.com/rolandjlevy/which-city)
+> [View live demo](https://rlevy-which-city.netlify.com)
+
+> [View repo on Github](https://github.com/rolandjlevy/which-city)
 
 ## Installation and set up
 + Clone this repo
