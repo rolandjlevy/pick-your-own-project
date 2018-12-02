@@ -118,7 +118,7 @@ class App extends React.Component {
         const obj = {};
         return results.reduce((acc, item, index, array) => {
             if ( item.cover_photo && (this.keepRelevantImage (item, array.length))) {
-                const imgURL = item.cover_photo.urls.regular;
+                const imgURL = item.cover_photo.urls.small;
                 if (!obj[imgURL]) {
                     obj[imgURL] = true;
                     acc.push(item);
