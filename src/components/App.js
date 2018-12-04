@@ -9,9 +9,9 @@ import '../styles/components/app.scss';
 class App extends React.Component {
 
     constructor(){
-        super();  
-        
-        this.apikey = 'b4574621f5145340d9c19e14e47c51c674c170b7b564908de5347e95916c8d08';
+        super(); 
+
+        this.apikey = process.env.API_KEY;
         this.baseURL = 'https://api.unsplash.com/search/collections/';
         this.keepArray = ["tower", "summer", "explore", "holiday", "street", "village", "town", "urban", "rural", "desert", "mountain", "view", "river", "stream", "field", "beach", "sea", "sunset", "landmark", "architecture", "city", "building", "cathedral", "bridge"];  
         this.ignoreArray = ["wood", "wall", "texture", "glass", "metal"]; // const ignoreArray = ["leaf", "fashion", "table", "coffee", "fish", "computer", "office", "food", "guitar", "music", "sport", "background", "door", "wood", "wallpaper", "wall", "texture", "glass", "metal"];
