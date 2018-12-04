@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "10.5.0"
-  },
+//   "engines": {
+//     "node": "10.5.0"
+//   },
   "scripts": {
     "test": "jest",
     "dev": "webpack --mode development",
