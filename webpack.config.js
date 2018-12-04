@@ -1,5 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 require('dotenv').config();
 
 module.exports = {
@@ -15,7 +18,10 @@ module.exports = {
         API_KEY: JSON.stringify(process.env.API_KEY),
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
-    })
+    }), new HtmlWebpackPlugin({
+        template: 'src/assets/index.template.html'
+      }),
+      new CopyWebpackPlugin([ { from: path.resolve(__dirname, './src/static'), to: path.resolve(__dirname, 'dist') } ])
   ],
   module: {
     rules: [
